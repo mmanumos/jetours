@@ -1,44 +1,55 @@
-# Books Foro 
-Aplicativo de prueba para un reclutador en el que se solicitaba el desarrollo de una aplicación donde se demostrara destreza con la creación, manejo y consumos de API tanto externas como internas con un framework de Python y con esto utilizar las librerías necesarias para generar reportes en pdf y xlsx.
+# Jetours
+Aplicativo de prueba.
 
 ## Entorno en el que fue desarrollado;
 
 * [x]  Sistema operativo Ubuntu 20.04 LTS
-* [x]  Motor de bases de datos sqlite 3.31.1
 * [x]  Python 3.8.2
 
 ## Stack Tecnológico
 
-### Para frontend se utlizó:
-* [x] html5 
-* [x] css3
-* [x] js 
-* [x] jquery(Enlazado externamente)
 
 ### Para backend se utilizaron las siguientes librerías
 * [x] flask
-* [x] sqlalchemy
 * [x] flask-cors
-* [x] openpyxl
-* [x] reportalab
 
 ###  Las librerías se instalan de la siguiente forma:
 
 pip install -r requirements.txt
 
-## La aplicación funciona de la siguiente manera:
+## La aplicación funciona de la siguiente manera de forma -----  local:
 
 ### 1ro 
-- Abrir una terminal y ubicarse en la carpeta raíz de la aplicación "intellinext". 
-  Ejecutar el comando: python3 app.py
+- Abrir una terminal y ubicarse en la carpeta raíz de la aplicación "jetours". 
+  Ejecutar el comando: python3 -m api.v1.main 
+
 
 ### 2do
- - Abrir otra terminal y ubicarse en la carpeta raíz de la aplicación. 
-   Ejecutar el comando: python3 -m api.v1.main 
+- En el navegador digitar la url: http://localhost:5000/status esto le indicará si la API está respondiendo adecuadamente.
 
-### 3ro
-- En el navegador digitar la url: http://localhost:5000/  este lo redirigirá al login, aquí ya se puede registrar y hacer uso de la aplicación
+## La aplicación funciona de la siguiente manera de forma -----  online:
+- En el navegador digitar la url: http://35.239.166.35:5000/api/v1/status/ esto le indicará si la API está respondiendo adecuadamente.
 
-## API para reportes
+## Endpoints
 
-Los datos de los reportes provienen de la API pública de https://openlibra.com/
+### Para ordenar números
+En el navegador puede digitar de las siguientes formas y ambas son válidas
+
+* http://localhost:5000/api/v1/sorted_numbers/?numbers=10,27,3,8,1
+
+* http://localhost:5000/api/v1/sorted_numbers/?numbers=[10,27,3,8,1]
+
+
+*** Con curl:
+* curl -X GET http://0.0.0.0:5000/api/v1/sorted_numbers/\?numbers\=10,27,3,8,1
+* curl -X GET http://localhost:5000/api/v1/sorted_numbers/?numbers=%5B1,2,3%5D
+
+
+### Obtener el número de letras mayúsculas de un archivo
+
+En este caso se utilizará curl: 
+(debe reemplazar "filename.txt" por el nombre del archivo que desea subir, asegurese que está en el directorio del archivo a subir o que la ruta del archivo esté bien)
+
+
+* curl -i -X GET http://35.239.166.35:5000/api/v1/name_file/ -F "file=@index.html"
+* curl -i -X GET http://localhost:5000/api/v1/name_file/ -F "file=@filename.txt"
